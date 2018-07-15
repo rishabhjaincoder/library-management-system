@@ -1,0 +1,66 @@
+Library Management System
+
+Table Category
+ 
+- id
+- categoryname
+- description
+
+
+Table Books
+
+- id
+- cid
+- name
+- author
+- publisher
+- price
+- pages
+- exclusive
+- stock
+
+
+Table Student
+
+- id
+- name
+- course
+- email
+- phone
+- address
+
+
+Table Teacher
+
+- id
+- empid
+- name
+- dept
+
+
+Login Table
+
+- id
+- username
+- password
+- type (T : Teacher, S : Student, L : Librarian)
+
+
+Table Issuedregister
+
+- id
+- bid
+- issuerid
+- issuertype
+- issueddate
+
+
+Table ReturnedRegister
+
+- id
+- bid
+- issuerid
+- issuertype
+- returneddate
+- fine
+
