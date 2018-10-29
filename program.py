@@ -3,10 +3,8 @@
 import dl
 from models import Category,Book,Student,Login,Teacher,IssuedRegister,ReturnedRegister
 from datetime import date
-import os
 
 def StudentUI():
-    os.system("cls")
     print("1. Create Profile")
     print("2. Update Profile")
     print("3. View Profile")
@@ -26,15 +24,12 @@ def StudentUI():
         student=Student(name=name,course=course,email=email,phone=phone,address=address)
         add_student=dl.AddStudent(student)
 
-        os.system("cls")
-
         if(add_student==True):
             print("Hey "+student.name + " your profile is successfully added.")
         else:
             print( "Oops!!! "+student.name +" your profile is not added.Please Try Again.")
 
     if(option==2):
-        os.system("cls")
         print("\t\t\t UPDATE PROFILE \t\t\t")
         name=input("Enter name : ")
         o_email=input("Enter email-id(original) : ")
@@ -47,22 +42,16 @@ def StudentUI():
         get_student=dl.GetStudent(name,o_email)
         update_student=dl.UpdateStudent(get_student[0],student)
 
-        os.system("cls")
-
         if(update_student==True):
             print("Hey "+student.name + " your profile is successfully updated.")
         else:
             print( "Oops!!! "+student.name +" your profile is not updated.Please Try Again.")
 
     if(option==3):#view profile
-        os.system("cls")
         print("\t\t\t VIEW PROFILE \t\t\t")
         name=input("Enter name : ")
         o_email=input("Enter email-id : ")
         get_student=dl.GetStudent(name,o_email)
-
-        os.system("cls")
-
         if(get_student!=None):
             print("Name: "+get_student[1])
             print("Course: "+get_student[2])
@@ -74,7 +63,6 @@ def StudentUI():
             print( "Oops!!! your profile is not available. Please Try Again.")        
 
     if(option==4):#issue book
-        os.system("cls")
         print("\t\t\t ISSUE BOOK \t\t\t")
         name=input("Enter your name: ")
         email=input("Enter Email-Id: ")
@@ -94,8 +82,6 @@ def StudentUI():
             issuedregister=IssuedRegister(bid=bid,issuerid=issuerid,issuertype=issuertype,issueddate=issueddate)
             add_issued_register=dl.AddIssued(issuedregister)
 
-            os.system("cls")
-
             if(update_stock==True and add_issued_register==True ):
                 print("Your book is issued. Kindly visit again.")
             else:
@@ -105,7 +91,6 @@ def StudentUI():
             print("Book not available.")
 
     if(option==5):#return book
-        os.system("cls")
         print("\t\t\t RETURN BOOK \t\t\t")
         name=input("Enter Name: ")
         email=input("Enter Email-Id: ")
@@ -118,7 +103,7 @@ def StudentUI():
             for record in showissued:
                 print()
                 print("Book Name:"+record[0]+"\t\t Issue Date:"+str(record[1]))
-            os.system("cls")
+
             bname=input("Enter Book Name to be Returned: ")
             display_book=dl.GetBook(bname)
             bid=display_book[0]
@@ -138,8 +123,6 @@ def StudentUI():
             stock=display_book[8]+1            
             update_stock=dl.UpdateStock(bname,stock)            
 
-            os.system("cls")
-
             if(returned_register==True and update_stock==True and delete_register==True):
                 print("You have successfully returned the book. Kindly visit again. ")
             else:
@@ -150,7 +133,6 @@ def StudentUI():
 
     return True
 def TeacherUI():
-    os.system("cls")
     print("1. Create Profile")
     print("2. Update Profile")
     print("3. View Profile")
@@ -168,14 +150,13 @@ def TeacherUI():
 
         teacher=Teacher(empid=empid,name=name,dept=dept)
         add_teacher=dl.AddTeacher(teacher)
-        os.system("cls")
+
         if(add_teacher==True):
             print("Hey "+teacher.name + " your profile is successfully added.")
         else:
             print( "Oops!!! "+teacher.name +" your profile is not added.Please Try Again.")
 
     if(option==2):
-        os.system("cls")
         print("\t\t\t UPDATE PROFILE \t\t\t")
         name=input("Enter name : ")
         o_empid=input("Enter Employee id:(original) : ")
@@ -184,19 +165,17 @@ def TeacherUI():
         teacher=Teacher(empid=empid,name=name,dept=dept)
         get_teacher=dl.GetTeacher(name,o_empid)
         update_teacher=dl.UpdateTeacher(get_teacher[0],teacher)
-        os.system("cls")
+
         if(update_teacher==True):
             print("Hey "+teacher.name + " your profile is successfully updated.")
         else:
             print( "Oops!!! "+teacher.name +" your profile is not updated.Please Try Again.")
 
     if(option==3):#view profile
-        os.system("cls")
         print("\t\t\t VIEW PROFILE \t\t\t")
         name=input("Enter name : ")
         o_empid=input("Enter Employee-Id : ")
         get_teacher=dl.GetTeacher(name,o_empid)
-        os.system("cls")
         if(get_teacher!=None):
             print("Employee Id: "+str(get_teacher[1]))
             print("Name: "+get_teacher[2])
@@ -206,7 +185,6 @@ def TeacherUI():
             print( "Oops!!! your profile is not available. Please Try Again.")        
 
     if(option==4):#issue book
-        os.system("cls")
         print("\t\t\t ISSUE BOOK \t\t\t")
         name=input("Enter name : ")
         empid=input("Enter Employee-Id : ")        
@@ -226,7 +204,7 @@ def TeacherUI():
 
             issuedregister=IssuedRegister(bid=bid,issuerid=issuerid,issuertype=issuertype,issueddate=issueddate)
             add_issued_register=dl.AddIssued(issuedregister)
-            os.system("cls")
+
             if(update_stock==True and add_issued_register==True ):
                 print("Your book is issued. Kindly visit again.")
             else:
@@ -236,7 +214,6 @@ def TeacherUI():
             print("Book not available.")
 
     if(option==5):#return book
-        os.system("cls")
         print("\t\t\t RETURN BOOK \t\t\t")
         name=input("Enter Name: ")
         email=input("Enter Employee-Id: ")
@@ -250,7 +227,6 @@ def TeacherUI():
                 print()
                 print("Book Name:"+record[0]+"\t\t Issue Date:"+str(record[1]))
 
-            os.system("cls")
             bname=input("Enter Book Name to be Returned: ")
             display_book=dl.GetBook(bname)
             bid=display_book[0]
@@ -269,7 +245,7 @@ def TeacherUI():
 
             stock=display_book[8]+1            
             update_stock=dl.UpdateStock(bname,stock)            
-            os.system("cls")
+
             if(returned_register==True and update_stock==True and delete_register==True):
                 print("You have successfully returned the book. Kindly visit again. ")
             else:
@@ -280,7 +256,6 @@ def TeacherUI():
     return True
                 
 def LibrarianUI():
-    os.system("cls")
     print("1. Add New Book")
     print("2. Delete Book")
     print("3. Update Book Details")
@@ -294,16 +269,9 @@ def LibrarianUI():
     if(option==1):#add book
         print("\t\t\t ADD BOOK \t\t\t")
         name=input("Enter Book Name To Be Added: ")        
-        print("Enter category name : ")
-        while(True):
-            try:
-                cname=input()
-                category=dl.GetCategory1(cname)
-                cid=category[0]
-            except Exception as e:
-                print("Category doesn't exist. Please enter a valid category")
-                continue
-            break
+        cname=input("Enter Category Name: ")
+        category=dl.GetCategory1(cname)
+        cid=category[0]
         author=input("Enter Author: ")
         publisher=input("Enter Publisher: ")
         price=float(input("Enter Price: "))
@@ -313,8 +281,6 @@ def LibrarianUI():
 
         book=Book(cid=cid,name=name,author=author,publisher=publisher,price=price,Exclusive=Exclusive,Stock=Stock,Pages=Pages)
         add_book=dl.AddBook(book)
-        os.system("cls")
-
         if(add_book==True):
             print(book.name + " successfully added.")
         else:
@@ -331,7 +297,6 @@ def LibrarianUI():
             print("Book is not deleted. Please Try Again. ")
             
     elif(option==3):#update book
-        os.system("cls")
         print("\t\t\t UPDATE BOOK DETAILS \t\t\t")
         name=input("Enter Book Name to be updated: ")
         cname=input("Enter category name: ")
@@ -345,20 +310,19 @@ def LibrarianUI():
         cid=category[0]
         book=Book(cid=cid,name=name,author=author,publisher=publisher,price=price,Exclusive=Exclusive,Stock=Stock,Pages=Pages)
         update_book=dl.UpdateBook(book)
-        os.system("cls")
+
         if(update_book==True):
              print(book.name + " is updated.")
         else:
              print(book.name + "not updated.Please Try Again")
          
     elif(option==4):#Display Books on basis of categories
-        os.system("cls")
         print("\t\t\t VIEW BOOKS \t\t\t")
         cname=input("Enter category name: ")
         category=dl.GetCategory1(cname)
         cid=category[0]
         display_books=dl.GetBooks(cid)
-        os.system("cls")
+
         if(display_books!=None):
             for record in display_books:
                 print("Name: "+record[2]+"\t"+"Category: "+cname+"\t"+"Author:"+record[3]+"\t"+"Publisher: "+record[4]+"\t"+"Price: "+str(record[5])+"\t"+"Pages: "+str(record[6])+"\t"+"Exclusive: "+str(record[7])+"\t"+"Stock: "+str(record[8]))
@@ -366,11 +330,10 @@ def LibrarianUI():
             print("Books not available.Please try again.")
             
     elif(option==5):#Search Book
-        os.system("cls")
         print("\t\t\t SEARCH BOOK \t\t\t")
         name=input("Enter book name: ")
         display_book=dl.GetBook(name)
-        os.system("cls")
+
         if(display_book!=None):
             category=dl.GetCategory2(display_book[1])
             cname=category[1]            
@@ -379,7 +342,6 @@ def LibrarianUI():
             print("Book not available.Please try again.")         
 
     elif(option==6):#Check Fine Collection
-        os.system("cls")
         Totalfine=dl.CheckFine()
         print("Total fine collected is: "+str(Totalfine))
         
@@ -394,7 +356,6 @@ def LibrarianUI():
         
             
 def MainMenu():
-    os.system("cls")
     print("1. Register")
     print("2. Login")
     print("3. Exit")
@@ -402,7 +363,6 @@ def MainMenu():
 
     option=int(input("Enter Your Choice: "))
     if(option==1):
-        os.system("cls")
         username=input("Enter Username: ")
         password=input("Enter password: ")
         usertype=input("Enter Type (L/T/S): ")
@@ -411,12 +371,11 @@ def MainMenu():
         dl.AddLogin(login)
 
     elif(option==2):
-        os.system("cls")
         username=input("Username: ")
         password=input("Password: ")
 
         login=dl.Getlogin(username,password)
-        os.system("cls")
+
         if(login!=None):
             if(login[3]=='T'):
                 while TeacherUI():
@@ -432,9 +391,4 @@ def MainMenu():
             print("Invalid Usename or password")
             return False        
 while True:
-    try:
-        MainMenu()
-    except Exception as e:
-        print("Something went wrong ...\nPress any key to continue")
-        input()
-        pass
+    MainMenu()
